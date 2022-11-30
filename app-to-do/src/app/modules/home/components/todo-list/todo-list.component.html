@@ -1,10 +1,11 @@
-<section>
-  <ul>
-    <li>
-      <input type="checkbox">
-      <input type="text">
+<section [ngClass]="{'loading': !taskList.length}"> <!--Se a lista estiver vazia mostre o background vindo do css com a classe loading-->
+  <ul *ngIf="taskList.length" >
+    <li *ngFor="let item of taskList; let i = index">
+      <input type="checkbox" [(ngModel)]="item.checked">
 
-      <button>
+      <input type="text" (keyup)="validationInput(item.task, i)" [(ngModel)]="item.task" [ngClass]="{'checked': item.checked}"><!--Se o item for marcado com true adiciona a classe .checked-->
+
+      <button (click)="deleteItemTaskList(i)">
         <img src="assets/icons/icon-trash.svg" alt="">
       </button>
     </li>
@@ -12,7 +13,7 @@
 
 </section>
 
+<!--  $event é o valor recebido do @Output do componente todo-input-add-itens. -->
+<app-todo-input-add-itens (emitItemTaskList)="setEmitTaskList($event)"></app-todo-input-add-itens>
 
-<app-todo-input-add-itens></app-todo-input-add-itens>
-
-<app-todo-button-delete-all></app-todo-button-delete-all>
+<app-todo-button-delete-all (click)="deleteAllTaskList()" *ngIf="taskList.length"></app-todo-button-delete-all>
