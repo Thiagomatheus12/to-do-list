@@ -23,4 +23,12 @@
       color: $secondary-text-color;
     }
   }
+
+  button {
+    background: $tertiary-background-color;
+    border: none;
+    color: $secondary-text-color;
+    width: 20%;
+    font-size: 1rem;
+  }
 }
