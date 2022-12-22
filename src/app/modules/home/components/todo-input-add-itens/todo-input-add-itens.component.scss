@@ -15,14 +15,14 @@
 
     font-size: 0.875rem;
     color: $secondary-text-color;
-    text-align: center;
 
     padding: 10px;
     box-sizing: border-box;
 
     &::placeholder {
-      color: $secondary-text-color;
+      color: rgb(224, 221, 221);
     }
+
   }
 
   button {
