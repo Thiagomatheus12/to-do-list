@@ -1,4 +1,5 @@
 import { Component, DoCheck } from '@angular/core';
+import Swal from 'sweetalert2'
 
 // Interface
 import { TaskList } from './../../model/task-list';
@@ -9,6 +10,7 @@ import { TaskList } from './../../model/task-list';
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent implements DoCheck {
+
 
   public taskList: Array<TaskList> = JSON.parse(localStorage.getItem("list") || '[]');
 
@@ -31,11 +33,19 @@ export class TodoListComponent implements DoCheck {
 
   //Método que Deleta todos os itens dentro da lista.
   public deleteAllTaskList() {
-    const confirm = window.confirm("Você deseja realmente Deletar tudo?"); //um alert para confirmação de remoção de todos os item da lista.
-
-    if(confirm) { //se o usuário confirmar sera removido todos os itens da lista.
-      this.taskList = [];
-    }
+    Swal.fire({
+      title: '<strong>Deseja deletar todas as tarefas?</strong>',
+      icon: 'warning',
+      showCloseButton: true,
+      showCancelButton: true,
+      confirmButtonText:
+        'Deletar',
+      confirmButtonColor: 'red',
+      cancelButtonText:
+        'Cancelar'
+    }).then(confirm => {
+      if (confirm.isConfirmed) this.taskList = [];
+    })
   }
 
   //Método que verifica se o input está preenchido, caso não esteja ele pergunta se quer deletar.

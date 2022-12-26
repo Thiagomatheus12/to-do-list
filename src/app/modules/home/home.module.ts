@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 
 //components
 import { HeaderComponent } from './components/header/header.component';
@@ -19,10 +20,12 @@ import { HomeComponent } from './pages/home/home.component';
     TodoButtonDeleteAllComponent,
     TodoInputAddItensComponent,
     TodoListComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    MatDialogModule,
     FormsModule
   ]
 })
